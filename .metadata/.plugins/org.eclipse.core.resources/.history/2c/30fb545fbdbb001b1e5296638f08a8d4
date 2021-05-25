@@ -1,0 +1,118 @@
+<%@include file="CommonHeader.jsp"%>
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {margin:0;height:2000px;}
+
+.icon-bar {
+  position: fixed;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.icon-bar a {
+  display: block;
+  text-align: center;
+  padding: 16px;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 20px;
+}
+
+.icon-bar a:hover {
+  background-color: #000;
+}
+
+.facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.google {
+  background: #dd4b39;
+  color: white;
+}
+
+.linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.youtube {
+  background: #bb0000;
+  color: white;
+}
+
+.content {
+  margin-left: 75px;
+  font-size: 30px;
+}
+</style>
+<body>
+
+<div class="icon-bar">
+  <a href="#" class="facebook"><i class="fa fa-facebook"></i></a> 
+  <a href="#" class="twitter"><i class="fa fa-twitter"></i></a> 
+  <a href="#" class="google"><i class="fa fa-google"></i></a> 
+  <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+  <a href="#" class="youtube"><i class="fa fa-youtube"></i></a> 
+</div>
+
+<div class="content">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <a href="images/address.jpg" target="_blank">
+          <a href="mailto:namyas03@gmail.com"><img alt="Mail" src="images/address.jpg"/></a>
+          <div class="caption">
+             <p>Nameera</p>
+            <p>C.E.O</p>
+            <p>Contact at:nameera@gmail.com</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <a href="images/ceo2.jpg" target="_blank">
+          <img src="images/ceo2.jpg" alt="Nature" style="width:100%">
+          <div class="caption">
+             <p>Sheeraz</p>
+            <p>Manager</p>
+            <p>Contact at:sheeraz12@gmail.com</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <a href="images/ceo3.jpg" target="_blank">
+          <img src="images/ceo3.jpg" alt="Fjords" style="width:100%">
+          <div class="caption">
+            <p>John Doe</p>
+            <p>Designer</p>
+            <p>Contact at:doe.John@gmail.com</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h1>For any Queries,you can reach us through email</h1>
+<p>Email:namyas03@gmail.com</p>
+<p>Or you can reach us by clicking <a href="mailto:namyas03@gmail.com">here</a></p>
+</div>
+
+</body>
+</html> 
+<%@include file="footer.jsp"%>

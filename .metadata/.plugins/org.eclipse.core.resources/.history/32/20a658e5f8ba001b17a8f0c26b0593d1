@@ -1,0 +1,17 @@
+package com.shopify.dao;
+
+import java.util.List;
+
+import com.voguehub.model.Customer;
+
+
+
+
+public interface UserDao {
+	
+	List<Customer> getAllCustomers();
+	Customer getCustomerByID(int customerID);
+	boolean addCustomer(Customer customer);
+
+	Customer getCustomerByName(String username);
+}

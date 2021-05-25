@@ -1,0 +1,12 @@
+package com.shopify.dao;
+
+import java.util.List;
+
+import com.shopify.model.Supplier;
+public interface SupplierDao {
+	List<Supplier> getAllProducts();
+	Supplier getProductByID(int supplierId);
+	boolean addProduct(Supplier supplier);
+	void updateProduct(Supplier supplier);
+	void deleteProduct(Supplier supplier);
+}

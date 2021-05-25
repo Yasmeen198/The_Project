@@ -1,0 +1,13 @@
+package com.shopify.dao;
+
+import java.util.List;
+
+
+public class CategoryDao {
+	List<Category> getAllCategories();
+	Supplier getCategoryByID(int ategoryId);
+	void updateSupplier(Supplier supplier);
+	boolean addSupplier(Supplier supplier);
+	void deleteSupplier(Supplier supplier);
+
+}

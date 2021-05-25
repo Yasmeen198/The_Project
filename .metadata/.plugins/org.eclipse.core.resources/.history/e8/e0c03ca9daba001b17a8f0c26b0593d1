@@ -1,0 +1,12 @@
+package com.vogue.dao;
+
+import java.io.IOException;
+
+import com.vogue.model.Cart;
+
+public interface CartDao {
+	Cart getCartByID(int cartId);
+	void updateCart(Cart cart);
+	Cart validateCart(int cartId) throws IOException;
+
+}

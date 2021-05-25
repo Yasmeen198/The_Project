@@ -1,0 +1,31 @@
+<%@ page language="java" contentType="text/html"%>
+
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>ADMIN HOME</title>
+</head>
+<body>
+	<div class="container-fluid">
+	
+				<div class="thumbnail">
+        <a href="productManagement" target="_blank">
+          <img src="images/product.jpg" alt="product" style="width:100%">
+          <div class="caption">
+            <p>Product Management</p>
+          </div>
+        </a>
+      </div>
+   
+				<div class="thumbnail">
+        <a href="customerManagement" target="_blank">
+          <img src="images/customer.jpg" alt="Customer" style="width:100%">
+          <div class="caption">
+            <p>Customer Management</p>
+          </div>
+        </a>
+      </div>
+    
+	</div>
+</body>
+</html>

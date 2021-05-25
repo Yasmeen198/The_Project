@@ -1,0 +1,59 @@
+<%@include file="CommonHeader.jsp"%>
+<style>
+body {
+  background-image: url("./images/5134336.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+</style>
+<body>
+<div class="about-section">
+  <h1>About Us Page</h1>
+  <p>Some information about who we are and what we do.</p>
+ 
+</div>
+
+<h2 style="text-align:center">Our Team</h2>
+<div class="row">
+  <div class="column">
+    <div class="card">
+      <a target="_blank" href="images/ceo1.jpg"> <img src="images/ceo1.jpg" alt="Mike" class="img-thumbnail" style="width: 200px;height:150px" />
+      <div class="container">
+        <h2>Nameera</h2>
+        <p class="title">CEO & Founder</p>
+        <p>Initiator of our belief and laid a path to our vision</p>
+        <p>nameera@gmail.com</p>
+        <p><button class="button">View Photo</button></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+    <a target="_blank" href="images/ceo2.jpg"> <img src="images/ceo2.jpg" alt="Mike" class="img-thumbnail" style="width: 200px;height:150px" />
+      <div class="container">
+        <h2>Mike Ross</h2>
+        <p class="title">Manager</p>
+        <p>Responsible for maintenance of our company</p>
+        <p>mike@example.com</p>
+        <p><button class="button">View Photo</button></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <a target="_blank" href="images/ceo3.jpg"> <img src="images/ceo3.jpg" alt="Mike" class="img-thumbnail" style="width: 200px;height:150px" />
+      <div class="container">
+        <h2>Jane Doe</h2>
+        <p class="title">Designer</p>
+        <p>Builder of our Web app</p>
+        <p>jane@gmail.com</p>
+        <p><button class="button">View Photo</button></p>
+      </div>
+    </div>
+  </div>
+</div>
+</html>
+<%@include file="footer.jsp"%>

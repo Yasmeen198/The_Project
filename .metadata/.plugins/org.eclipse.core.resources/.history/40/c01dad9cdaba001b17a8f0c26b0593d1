@@ -1,0 +1,5 @@
+package com.voguehub.dao;
+
+public interface ProductDao {
+
+}

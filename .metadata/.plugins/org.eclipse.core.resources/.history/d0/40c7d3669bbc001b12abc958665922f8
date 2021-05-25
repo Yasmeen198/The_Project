@@ -1,0 +1,24 @@
+package com.shopify.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import com.shopify.model.Order;
+import com.shopify.model.Product;
+import com.shopify.model.UserDetail;
+
+@Controller
+public class OrderController {
+	@GetMapping("/buyProduct/{productID}")
+    public String buyProduct(@PathVariable("productID") int productID , Model model)
+  {
+		Product product=new Product();
+		Order order=new Order();
+		model.addAttribute("user",user);
+		model.addAttribute("product",product);
+		model.addAttribute("order", order);
+	return "Order";
+}
+}

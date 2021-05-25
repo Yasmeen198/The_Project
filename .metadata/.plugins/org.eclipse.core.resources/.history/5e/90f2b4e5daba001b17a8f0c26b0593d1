@@ -1,0 +1,13 @@
+package com.voguehub.dao;
+
+import java.util.List;
+
+import com.vogue.model.Product;
+
+public interface ProductDao {
+	List<Product> getAllProducts();
+	Product getProductByID(int productID);
+	boolean addProduct(Product product);
+	void updateProduct(Product product);
+	void deleteProduct(Product product);
+}

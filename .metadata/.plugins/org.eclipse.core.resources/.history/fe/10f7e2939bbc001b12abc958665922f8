@@ -1,0 +1,57 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Order Details</title>
+</head>
+<body>
+<div class="container">
+		<div class="col-md-12  col-md-8">
+			<form action="${pageContext.request.contextPath}/placeOrder" method="post">
+				<table class="table table-bordered table-responsive" align="center">
+					<tr bgcolor="87ceeb">
+						<td align="center" colspan="2"><h3>Product Details</h3></td>
+					</tr>
+					<tr>
+						<td>Product Id</td>
+						<td><input type="text" name="productID" class="form-control"
+							value="${product.productID}" readonly /></td>
+					</tr>
+					<tr>
+						<td>Product Name</td>
+						<td><input type="text" name="productName"
+							class="form-control" value="${product.productName}" readonly /></td>
+					</tr>
+					<tr>
+						<td>Price</td>
+						<td><input type="text" name="price" class="form-control"
+							value="${product.price}" readonly /></td>
+					</tr>
+					<tr>
+						<td>UserName</td>
+						<td><input type="text" name="price" class="form-control"
+							value="${user.customerName}" readonly /></td>
+					</tr>
+					<tr>
+						<td>Mobile</td>
+						<td><input type="text" name="price" class="form-control"
+							value="${user.mobileNumber}" readonly /></td>
+					</tr>
+					<tr>
+						<td>Email</td>
+						<td><input type="text" name="emailID" class="form-control"
+						value="${user.emailID }" readonly/></td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center"><input type="submit"
+							value="Product Update" class="btn btn-info" /></td>
+					</tr>
+					
+				</table>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

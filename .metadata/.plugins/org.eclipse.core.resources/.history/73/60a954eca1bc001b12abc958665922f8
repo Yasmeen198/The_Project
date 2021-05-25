@@ -1,0 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Thanks</title>
+</head>
+<body>
+<h3>Thankyou for Shopping with us...</h3>
+<p>We will be informing about your order status..Please co-ordinate while you get your package </p>
+<a href="${pageContext.request.contextPath}/" class="btn btn-info">Back</a>
+</body>
+</html>

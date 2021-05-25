@@ -1,0 +1,83 @@
+<%@include file="header.jsp" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Add New User</title>
+</head>
+<body>
+ <form:form action="${pageContext.request.contextPath}/register" method="post" modelAttribute="customer">
+ <table>
+ <tr><td><label for="customerName">Name</label></td>
+ <td><form:input path="customerName" id="customerName" class="form-Control" /></td></tr>
+ <tr><td>
+ <label for="customerPhone">MobileNumber</label></td>
+ <td>
+ <form:input path="customerPhone" id="customerPhone" class="form-Control" /></td></tr>
+ <tr><td>
+ <label for="customerEmail">EmailID</label></td>
+ <td><form:input type="customerEmail" path="customerEmail" id="customerEmail" class="form-Control" /></td></tr>
+ <tr><td>
+ <label for="password">Password</label></td>
+<td>
+<form:password path="password" id="password" class="form-Control" /></td></tr>
+<tr><td>
+ <label for="username">UserName</label></td>
+<td><form:input path="username" id="username" class="form-Control" /></td></tr>
+<tr><td>
+<table><tr><th colspan="2">BillingAddress</th></tr>
+<tr><td> 
+<label for="billingHouseNumber">HouseNumber</label></td>
+<td><form:input path="billingAddress.houseNumber" id="billingHouseNumber" class="form-Control" />
+</td></tr>
+<tr><td> 
+<label for="billingCity">City</label></td>
+<td><form:input path="billingAddress.city" id="billingCity" class="form-Control" />
+</td></tr>
+<tr><td> 
+<label for="billingState">State</label></td>
+<td><form:input path="billingAddress.state" id="billingState" class="form-Control" />
+</td></tr>
+<tr><td> 
+<label for="billingZipCode">ZipCode</label></td>
+<td><form:input path="billingAddress.zipCode" id="billingZipCode" class="form-Control" />
+</td></tr>
+<tr><td> <label for="billingCountry">Country</label></td>
+<td><form:input path="billingAddress.country" id="billingCountry" class="form-Control" />
+</td></tr>
+</table></td></tr>
+<tr><td>
+<table><tr><th colspan="2">ShippingAddress</th></tr>
+<tr><td> 
+<label for="shippingHouseNumber">HouseNumber</label></td>
+<td><form:input path="shippingAddress.houseNumber" id="shippingHouseNumber" class="form-Control" />
+</td></tr>
+<tr><td> 
+<label for="shippingCity">City</label></td>
+<td><form:input path="shippingAddress.city" id="shippingCity" class="form-Control" />
+</td></tr>
+<tr><td> 
+<label for="shippingState">State</label></td>
+<td><form:input path="shippingAddress.state" id="shippingState" class="form-Control" />
+</td></tr>
+<tr><td> 
+<label for="shippingZipCode">ZipCode</label></td>
+<td><form:input path="shippingAddress.zipCode" id="shippingZipCode" class="form-Control" />
+</td></tr>
+<tr><td> <label for="shippingCountry">Country</label></td>
+<td><form:input path="shippingAddress.country" id="shippingCountry" class="form-Control" />
+</td></tr>
+</table></td></tr>
+<tr><td>
+<input type="submit" value="submit" class="btn btn-default"></td>
+<td>
+<a href="<c:url value="/home" />" class="btn btn-default">Cancel</a></td></tr>
+</table>
+</form:form>
+</body>
+</html>
+<%@include file="footer.jsp" %>

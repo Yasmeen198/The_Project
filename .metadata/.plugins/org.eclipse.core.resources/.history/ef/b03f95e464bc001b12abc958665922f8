@@ -1,0 +1,33 @@
+<%@ page language="java" contentType="text/html" %>
+
+<html>
+<head>
+<title>ADMIN HOME</title>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="thumbnail">
+        <a href="insertProduct" target="_blank">
+          <img src="images/product.jpg" alt="product" style="width:100%">
+          <div class="caption">
+            <p>Product Management</p>
+          </div>
+        </a>
+      </div>
+    </div>
+			<div class="col-sm-6">
+				<div class="thumbnail">
+        <a href="customerManagement" target="_blank">
+          <img src="images/customer.jpg" alt="Customer" style="width:100%">
+          <div class="caption">
+            <p>Customer Management</p>
+          </div>
+        </a>
+      </div>
+    </div>
+		</div>
+	</div>
+</body>
+</html>

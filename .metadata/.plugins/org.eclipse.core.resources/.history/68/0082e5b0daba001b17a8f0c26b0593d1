@@ -1,0 +1,75 @@
+package com.vogue.dao.impl;
+
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.vogue.dao.CartItemDao;
+import com.vogue.model.Cart;
+import com.vogue.model.CartItem;
+
+
+
+@Repository
+@Transactional
+public class CartItemDaoImpl implements CartItemDao {
+
+	@Autowired
+	private SessionFactory sessionFactory;
+	
+	@Override
+	public void addCartItem(CartItem cartItem) {
+		try {
+		Session session=sessionFactory.getCurrentSession();
+		session.save(cartItem);
+		session.flush();
+	}
+		catch(Exception ex) {
+		ex.printStackTrace();
+		}
+		
+		}
+
+	@Override
+	public void removeCartItem(CartItem cartItem) {
+		try {
+		Session session=sessionFactory.getCurrentSession();
+		session.delete(cartItem);
+		session.flush();
+	}
+		catch(Exception ex) {
+			ex.printStackTrace();
+			}
+	}
+
+	@Override
+	public void removeAllItems(Cart cart) {
+		List<CartItem> cartItems=cart.getCartItems();
+		for(CartItem item:cartItems) {
+			removeCartItem(item);
+		}
+	}
+
+	@Override
+	public CartItem getItemByID(int productId) {
+		CartItem cartItem;
+		try
+		{
+			Session session = sessionFactory.getCurrentSession();
+			cartItem = session.get(CartItem.class, productId);
+			return cartItem;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return null;
+		}
+	}
+
+}

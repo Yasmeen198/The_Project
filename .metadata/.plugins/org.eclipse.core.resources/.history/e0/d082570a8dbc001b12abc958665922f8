@@ -1,0 +1,44 @@
+package com.shopify.dao;
+
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.shopify.model.Cart;
+import com.shopify.model.CartItem;
+import com.shopify.model.Order;
+
+public class OrderDaoImpl implements OrderDao {
+	
+	@Autowired
+	private SessionFactory sessionFactory;
+	
+	@Autowired
+	private CartDao cartDAO;
+
+	@Override
+	public boolean placeOrder(Order order) {
+		try {
+			 Session session = sessionFactory.getCurrentSession();
+		        session.saveOrUpdate(order);
+		        session.flush();
+		}
+		return false;
+	}
+
+	@Override
+	public double getCustomerOrderGrandTotal(int cartId){
+        double grandTotal = 0;
+        Cart cart = cartDAO.getCartById(cartId);
+        List<CartItem> cartItems = cart.getCartItems();
+
+        for (CartItem item : cartItems){
+            grandTotal += item.getTotalPrice();
+        }
+
+        return grandTotal;
+    }
+
+}

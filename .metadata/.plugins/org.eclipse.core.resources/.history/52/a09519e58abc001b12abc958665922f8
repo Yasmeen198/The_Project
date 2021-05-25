@@ -1,0 +1,94 @@
+package com.shopify.dao;
+
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.shopify.model.Cart;
+import com.shopify.model.CartItem;
+import com.shopify.model.Product;
+
+	@Repository("cartItemDAO")
+	@Transactional
+	public class CartItemDaoImpl implements CartItemDao{
+
+		@Autowired
+		private SessionFactory sessionFactory;
+		
+		
+
+		@Override
+		public CartItem getCartItemByProductId(int productId) {
+			CartItem item;
+			try
+			{
+				Session session = sessionFactory.getCurrentSession();
+				item = session.get(CartItem.class,productId);
+				return item;
+			}
+			catch(Exception ex)
+			{
+				ex.printStackTrace();
+				return null;
+			}
+		}
+
+		@Override
+		public boolean addCartItem(CartItem item) {
+			try
+			{
+				Session session = sessionFactory.getCurrentSession();
+				session.save(item);
+				session.flush();
+				return true;
+			}
+			catch(Exception ex)
+			{
+				ex.printStackTrace();
+				return false;
+			}
+		}
+
+		@Override
+		public boolean removeAllCartItems(Cart cart) {
+			
+			try
+			{
+				List<CartItem> cartItems=cart.getCartItems();
+				for(CartItem item:cartItems) {
+					removeCartItem(item);
+				}
+				return true;
+	     }
+			catch(Exception ex)
+			{
+				ex.printStackTrace();
+				return false;
+	}
+		}
+
+		@Override
+		public boolean removeCartItem(CartItem item) {
+		
+			try
+			{
+				Session session = sessionFactory.getCurrentSession();
+				session.delete(item);
+				session.flush();
+				return true;
+			}
+			catch(Exception ex)
+			{
+				ex.printStackTrace();
+				return false;
+				
+			}
+		}
+
+	}
+
+

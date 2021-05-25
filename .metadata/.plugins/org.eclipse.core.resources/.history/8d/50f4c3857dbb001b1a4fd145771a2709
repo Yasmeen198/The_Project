@@ -1,0 +1,100 @@
+package com.shopify.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.shopify.model.Supplier;
+@Repository
+@Transactional
+public class SupplierDaoImpl implements SupplierDao {
+
+	@Autowired
+	private SessionFactory sessionFactory;
+	
+	@Override
+	public List<Supplier> getAllSuppliers() {
+		List<Supplier> allSuppliers = new ArrayList<Supplier>();
+		try
+		{
+			Session session = sessionFactory.getCurrentSession();
+			allSuppliers = session.createQuery("from Suppliers").list();
+			return allSuppliers;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public Supplier getSupplierByID(int supplierId) {
+		Supplier supplier;
+		try
+		{
+			Session session = sessionFactory.getCurrentSession();
+			supplier = session.get(Supplier.class, supplierId);
+			return supplier;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public boolean addSupplier(Supplier supplier) {
+		try
+		{
+			Session session = sessionFactory.getCurrentSession();
+			session.save(supplier);
+			session.flush();
+			return true;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return false;
+		}
+	}
+
+	@Override
+	public boolean updateSupplier(Supplier supplier) {
+		try
+		{
+			Session session = sessionFactory.getCurrentSession();
+			session.saveOrUpdate(supplier);
+			session.flush();
+			return true;
+}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return false;
+}
+	}
+
+
+	@Override
+	public void deleteSupplier(Supplier supplier) {
+		try
+		{
+			Session session = sessionFactory.getCurrentSession();
+			session.saveOrUpdate(supplier);
+			session.flush();
+}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+}
+	
+
+	}
+}

@@ -1,0 +1,37 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@include file="header.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security"%>
+<!DOCTYPE html>
+<html>
+<head>
+<title>HomePage</title>
+</head>
+<body>
+
+		<c:if test="${pageContext.request.userPrincipal.name == null}">
+		<%@include file="MyCarousel.jsp" %>
+		</c:if>
+		
+		<c:if test="${pageContext.request.userPrincipal.name != null}">
+			<li><a>Welcome: ${pageContext.request.userPrincipal.name}</a></li>
+			<li><a href="<c:url value="/perform_logout" />">Logout</a></li>
+<a href="viewAllProducts">View All Products</a><br><br>
+			<security:authorize access="hasRole('ROLE_ADMIN')">
+				<h1>Admin Page</h1>
+				
+				<a href="admin/addProduct">Add New Product</a><br>
+				<br>
+				
+				<br>
+				<a href="admin/manageCustomers">Customer Management</a>
+						
+			</security:authorize>
+			
+			
+		</c:if>
+	
+</body>
+</html>
+<%@include file="footer.jsp" %>

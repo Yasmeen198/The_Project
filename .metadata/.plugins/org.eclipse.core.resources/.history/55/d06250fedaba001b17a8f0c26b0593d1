@@ -1,0 +1,15 @@
+package com.voguehub.dao;
+
+import java.util.List;
+
+import com.vogue.model.Customer;
+
+
+public interface CustomerDao {
+	
+	List<Customer> getAllCustomers();
+	Customer getCustomerByID(int customerID);
+	boolean addCustomer(Customer customer);
+
+	Customer getCustomerByName(String username);
+}

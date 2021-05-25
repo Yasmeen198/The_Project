@@ -1,0 +1,125 @@
+package com.vogue.dao.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Repository;
+
+import com.vogue.dao.CustomerDao;
+import com.vogue.model.Authorities;
+import com.vogue.model.Customer;
+import com.vogue.model.Users;
+
+
+@Repository
+@Transactional
+public class CustomerDaoImpl implements CustomerDao{
+
+	
+	@Autowired
+	private SessionFactory sessionFactory;
+	@Autowired
+	private BCryptPasswordEncoder encoder;
+	
+
+	
+	@Override
+	public List<Customer> getAllCustomers() {
+		List<Customer> allCustomers = new ArrayList<Customer>();
+		try
+		{
+			Session session = sessionFactory.getCurrentSession();
+			allCustomers = session.createQuery("from Customer").list();
+			return allCustomers;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public Customer getCustomerByID(int customerID) {
+		Customer customer;
+		try
+		{
+			Session session = sessionFactory.getCurrentSession();
+			customer = session.get(Customer.class, customerID);
+			return customer;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public boolean addCustomer(Customer customer) {
+		try
+		{
+			Session session = sessionFactory.getCurrentSession();
+			customer.getBillingAddress().setCustomer(customer);
+			customer.getShippingAddress().setCustomer(customer);
+			customer.setPassword(encoder.encode(customer.getPassword()));
+			
+			session.saveOrUpdate(customer);
+			session.saveOrUpdate(customer.getBillingAddress());
+			session.saveOrUpdate(customer.getShippingAddress());
+			
+			Users newUser=new Users();
+			newUser.setUsername(customer.getUsername());
+			newUser.setPassword(customer.getPassword());
+			newUser.setEnabled(true);
+			newUser.setCustomerId(customer.getCutomerId());
+			
+			Authorities authorities=new Authorities();
+			authorities.setUsername(customer.getUsername());
+			authorities.setAuthority("ROLE_USER");
+			
+			session.saveOrUpdate(newUser);
+			session.saveOrUpdate(authorities);
+		
+			
+			
+			session.saveOrUpdate(customer);
+			
+			session.flush();
+			return true;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return false;
+		}
+	}
+
+	@Override
+	public Customer getCustomerByName(String customerName) {
+		Customer customer=new Customer();
+		try
+		{
+			Session session = sessionFactory.getCurrentSession();
+			customer = (Customer) session.createQuery("from Customer where customerName=?").setParameter(0,customerName).list();
+			
+			return customer;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return null;
+		}
+	}
+
+	
+	}
+

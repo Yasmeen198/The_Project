@@ -1,0 +1,27 @@
+package com.shopify.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.shopify.dao.UserDao;
+import com.shopify.model.UserDetail;
+
+@Controller
+public class CartConroller {
+	@Autowired
+	private UserDao userDAO;
+	
+	@GetMapping
+	public String getCart(@AuthenticationPrincipal User activeUser){
+        UserDetail user = userDAO.getCustomerByUsername(activeUser.getUsername());
+        int cartId = user.getCart().getCartId();
+
+        return "redirect:/customer/cart/" + cartId;)
+	{
+		
+	}
+
+}

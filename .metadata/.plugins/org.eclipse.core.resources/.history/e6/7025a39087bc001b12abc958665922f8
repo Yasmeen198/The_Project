@@ -1,0 +1,68 @@
+package com.shopify.model;
+
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+@Entity
+public class Order implements Serializable{
+
+
+    @Id
+    @GeneratedValue
+    private int orderId;
+
+    @OneToOne
+    @JoinColumn(name = "cartId")
+    private Cart cart;
+
+    @OneToOne
+    @JoinColumn(name = "customerId")
+    private UserDetail customer;
+
+    private String shippingAddress;
+    
+    public Order()
+    {
+    	
+    }
+
+	public int getCustomerOrderId() {
+		return customerOrderId;
+	}
+
+	public void setCustomerOrderId(int customerOrderId) {
+		this.customerOrderId = customerOrderId;
+	}
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+
+	public UserDetail getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(UserDetail customer) {
+		this.customer = customer;
+	}
+
+	public String getShippingAddress() {
+		return shippingAddress;
+	}
+
+	public void setShippingAddress(String shippingAddress) {
+		this.shippingAddress = shippingAddress;
+	}
+
+	
+    
+}

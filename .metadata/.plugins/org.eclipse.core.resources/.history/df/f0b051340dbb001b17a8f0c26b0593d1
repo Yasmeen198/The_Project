@@ -1,0 +1,80 @@
+package com.shopify.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.shopify.model.Users;
+
+
+
+@Repository
+@Transactional
+public class UserDaoImpl implements UserDao{
+
+	
+	@Autowired
+	private SessionFactory sessionFactory;
+
+	
+
+	
+	@Override
+	public List<Users> getAllCustomers() {
+		List<Users> allCustomers = new ArrayList<Users>();
+		try
+		{
+			Session session = sessionFactory.getCurrentSession();
+			allCustomers = session.createQuery("from Users").list();
+			return allCustomers;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public Users getCustomerByID(int userId) {
+		Users user;
+		try
+		{
+			Session session = sessionFactory.getCurrentSession();
+			user = session.get(Users.class, userId);
+			return user;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public boolean addCustomer(Users user) {
+		try
+		{
+			Session session = sessionFactory.getCurrentSession();
+			
+			session.save(user);
+			
+			
+			session.flush();
+			return true;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return false;
+		}
+	}
+	
+	}
+

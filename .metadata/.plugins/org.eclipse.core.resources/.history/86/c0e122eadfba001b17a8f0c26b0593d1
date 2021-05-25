@@ -1,0 +1,71 @@
+package com.voguehub.controller;
+
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.voguehub.dao.ProductDao;
+
+
+@Controller
+public class ProductController {
+
+	
+	@Autowired
+	private ProductDao productDao;
+	
+	@GetMapping("/admin/addProduct")
+	public String addProductPage(Model model)
+	{
+		Product product = new Product();
+		product.setAvailability("In Stock");
+		model.addAttribute("product", product);
+		return "addProduct";
+	}
+	
+	@PostMapping("/admin/addProduct")
+	public String addProductDB(@ModelAttribute("product") Product product)
+	{
+		boolean result = productService.addProduct(product);
+		if(result)
+		{
+			return "redirect:/";
+		}
+		else
+		{
+			return "redirect:/admin/addProduct";
+		}
+	}
+	
+	@GetMapping(value={"viewAllProducts"})
+	public String viewAllProduct(Model model)
+	{
+		List<Product> allProducts = productService.getAllProducts();
+		model.addAttribute("products", allProducts);
+		return "viewAllProducts";
+	}
+	
+	@GetMapping(value={"/viewProduct/{id}"})
+	public String viewProduct(@PathVariable("id") int id,  Model model)
+	{
+		Product product = productService.getProductByID(id);
+		model.addAttribute("product", product);
+		return "viewProduct";
+	}
+}
+
+

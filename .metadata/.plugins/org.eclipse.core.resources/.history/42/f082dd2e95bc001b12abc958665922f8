@@ -1,0 +1,8 @@
+package com.shopify.dao;
+
+import com.shopify.model.Order;
+
+public interface OrderDao {
+boolean placeOrder(Order order);
+double getCustomerOrderGrandTotal(int cartId);
+}

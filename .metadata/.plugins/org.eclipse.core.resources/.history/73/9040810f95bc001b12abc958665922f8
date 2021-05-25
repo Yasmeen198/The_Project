@@ -1,0 +1,14 @@
+package com.shopify.dao;
+
+import com.shopify.model.Cart;
+import com.shopify.model.CartItem;
+
+public interface CartItemDao {
+	boolean addCartItem(CartItem cartItem);
+
+    boolean removeCartItem(CartItem cartItem);
+
+    boolean removeAllCartItems(Cart cart);
+
+    CartItem getCartItemByProductId(int productId);
+}

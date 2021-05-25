@@ -1,0 +1,42 @@
+package com.shopify.test;
+
+import static org.junit.Assert.assertTrue;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.shopify.dao.UserDao;
+import com.shopify.model.UserDetail;
+
+public class UserDaoTest 
+{
+	static UserDao userDAO;
+	
+	@BeforeClass
+	public static void initialize()
+	{
+		AnnotationConfigApplicationContext myContext=new AnnotationConfigApplicationContext();
+		myContext.scan("com.shopify");
+		myContext.refresh();
+		
+		userDAO=(UserDao)myContext.getBean("userDAO");
+	}
+	
+	@Test
+	public void registerUserTest()
+	{
+		UserDetail user=new UserDetail();
+		user.setUsername("Maruthu");
+		user.setPassword("12345");
+		user.setCustomerName("Maruthu vel");
+		user.setEnabled(true);
+		user.setEmailID("maruthu@gmail.com");
+		user.setCustomerAddress("coimbatore");
+		user.setMobileNumber("9600456256");
+		user.setRole("ROLE_ADMIN");
+		
+		assertTrue("Problem in Inserting UserDetail :",userDAO.addCustomer(user));
+	}
+
+}

@@ -1,0 +1,62 @@
+package com.shopify.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.shopify.dao.UserDao;
+import com.shopify.model.Product;
+import com.shopify.model.UserDetail;
+
+@Controller
+public class CustomerController {
+
+	@Autowired
+	private UserDao userDAO;
+	
+	@RequestMapping(value="/showCustomers")
+	public String showCustomers(Model model)
+	{
+		List<UserDetail> allCustomers=userDAO.getAllCustomers();
+		model.addAttribute("allCustomers", allCustomers);
+		return "Customer";
+		
+	}
+	
+	@GetMapping(value="/updateCustomer/{userId}")
+	public String editProduct(@PathVariable("userId")int userId,Model model)
+	{
+		UserDetail customer=userDAO.getCustomerByID(userId);
+		model.addAttribute("customer",customer);
+		return "CustomerUpdate";
+	}
+	
+	
+	
+	
+	@RequestMapping(value="/updateProduct", method=RequestMethod.POST)
+	public String updateProduct(@RequestParam("productID") int productId,
+			@RequestParam("productName") String productName, @RequestParam("description") String productDesc
+			,@RequestParam("quantity")int stock, @RequestParam("price")int price, Model model)
+	{
+		Product product=productDAO.getProductByID(productId);
+		product.setProductName(productName);
+		product.setDescription(productDesc);
+		product.setPrice(price);
+		product.setQuantity(stock);
+		
+		
+		 productDAO.updateProduct(product);
+		List<Product> productList = productDAO.getAllProducts();
+		model.addAttribute("productList", productList);
+		
+		return "Product";
+	}
+}

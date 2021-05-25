@@ -1,0 +1,5 @@
+package com.voguehub.model;
+
+public class Product {
+
+}
