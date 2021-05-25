@@ -6946,3 +6946,70 @@ Caused by: java.net.SocketException: An established connection was aborted by th
 
 !ENTRY org.eclipse.m2e.logback.appender 2 0 2021-05-25 13:35:42.951
 !MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.egit.core 4 0 2021-05-25 13:38:48.684
+!MESSAGE An exception occurred during push on URI https://github.com/Yasmeen198/TheProject.git: https://github.com/Yasmeen198/TheProject.git: An established connection was aborted by the software in your host machine
+!STACK 0
+org.eclipse.jgit.api.errors.TransportException: https://github.com/Yasmeen198/TheProject.git: An established connection was aborted by the software in your host machine
+	at org.eclipse.jgit.api.PushCommand.call(PushCommand.java:147)
+	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:217)
+	at org.eclipse.egit.ui.internal.push.PushJob.performJob(PushJob.java:86)
+	at org.eclipse.egit.ui.internal.jobs.RepositoryJob.run(RepositoryJob.java:59)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.eclipse.jgit.errors.TransportException: https://github.com/Yasmeen198/TheProject.git: An established connection was aborted by the software in your host machine
+	at org.eclipse.jgit.transport.BasePackPushConnection.doPush(BasePackPushConnection.java:206)
+	at org.eclipse.jgit.transport.TransportHttp$SmartHttpPushConnection.doPush(TransportHttp.java:1374)
+	at org.eclipse.jgit.transport.BasePackPushConnection.push(BasePackPushConnection.java:137)
+	at org.eclipse.jgit.transport.PushProcess.execute(PushProcess.java:139)
+	at org.eclipse.jgit.transport.Transport.push(Transport.java:1335)
+	at org.eclipse.jgit.api.PushCommand.call(PushCommand.java:137)
+	... 4 more
+Caused by: java.net.SocketException: An established connection was aborted by the software in your host machine
+	at java.base/sun.nio.ch.NioSocketImpl.implWrite(NioSocketImpl.java:420)
+	at java.base/sun.nio.ch.NioSocketImpl.write(NioSocketImpl.java:440)
+	at java.base/sun.nio.ch.NioSocketImpl$2.write(NioSocketImpl.java:826)
+	at java.base/java.net.Socket$SocketOutputStream.write(Socket.java:1051)
+	at java.base/sun.security.ssl.SSLSocketOutputRecord.deliver(SSLSocketOutputRecord.java:342)
+	at java.base/sun.security.ssl.SSLSocketImpl$AppOutputStream.write(SSLSocketImpl.java:1277)
+	at org.apache.http.impl.io.SessionOutputBufferImpl.streamWrite(SessionOutputBufferImpl.java:124)
+	at org.apache.http.impl.io.SessionOutputBufferImpl.flushBuffer(SessionOutputBufferImpl.java:136)
+	at org.apache.http.impl.io.SessionOutputBufferImpl.write(SessionOutputBufferImpl.java:167)
+	at org.apache.http.impl.io.ChunkedOutputStream.flushCacheWithAppend(ChunkedOutputStream.java:122)
+	at org.apache.http.impl.io.ChunkedOutputStream.write(ChunkedOutputStream.java:179)
+	at org.eclipse.jgit.util.TemporaryBuffer$LocalFile.writeTo(TemporaryBuffer.java:476)
+	at org.eclipse.jgit.transport.http.apache.TemporaryBufferEntity.writeTo(TemporaryBufferEntity.java:74)
+	at org.apache.http.impl.DefaultBHttpClientConnection.sendRequestEntity(DefaultBHttpClientConnection.java:156)
+	at org.apache.http.impl.conn.CPoolProxy.sendRequestEntity(CPoolProxy.java:152)
+	at org.apache.http.protocol.HttpRequestExecutor.doSendRequest(HttpRequestExecutor.java:238)
+	at org.apache.http.protocol.HttpRequestExecutor.execute(HttpRequestExecutor.java:123)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:272)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:108)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at org.eclipse.jgit.transport.http.apache.HttpClientConnection.execute(HttpClientConnection.java:269)
+	at org.eclipse.jgit.transport.http.apache.HttpClientConnection.getResponseCode(HttpClientConnection.java:237)
+	at org.eclipse.jgit.util.HttpSupport.response(HttpSupport.java:208)
+	at org.eclipse.jgit.transport.TransportHttp$Service.openResponse(TransportHttp.java:1586)
+	at org.eclipse.jgit.transport.TransportHttp$MultiRequestService.execute(TransportHttp.java:1693)
+	at org.eclipse.jgit.transport.TransportHttp$Service$HttpExecuteStream.read(TransportHttp.java:1618)
+	at org.eclipse.jgit.util.io.UnionInputStream.read(UnionInputStream.java:116)
+	at java.base/java.io.FilterInputStream.read(FilterInputStream.java:132)
+	at org.eclipse.jgit.util.io.TimeoutInputStream.read(TimeoutInputStream.java:90)
+	at org.eclipse.jgit.util.IO.readFully(IO.java:201)
+	at org.eclipse.jgit.transport.PacketLineIn.readLength(PacketLineIn.java:284)
+	at org.eclipse.jgit.transport.SideBandInputStream.needDataPacket(SideBandInputStream.java:124)
+	at org.eclipse.jgit.transport.SideBandInputStream.read(SideBandInputStream.java:106)
+	at org.eclipse.jgit.util.IO.readFully(IO.java:201)
+	at org.eclipse.jgit.transport.PacketLineIn.readLength(PacketLineIn.java:284)
+	at org.eclipse.jgit.transport.PacketLineIn.readString(PacketLineIn.java:148)
+	at org.eclipse.jgit.transport.BasePackPushConnection.readStringLongTimeout(BasePackPushConnection.java:404)
+	at org.eclipse.jgit.transport.BasePackPushConnection.readStatusReport(BasePackPushConnection.java:337)
+	at org.eclipse.jgit.transport.BasePackPushConnection.doPush(BasePackPushConnection.java:189)
+	... 9 more
+
+!ENTRY org.eclipse.egit.ui 4 0 2021-05-25 13:38:49.206
+!MESSAGE Can't connect to any repository: https://github.com/Yasmeen198/TheProject.git (https://github.com/Yasmeen198/TheProject.git: An established connection was aborted by the software in your host machine)
